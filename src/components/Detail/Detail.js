@@ -25,15 +25,17 @@ class Home extends Component {
   componentWillUnmount() {
     console.log(this.audioElement.currentTime)
     Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
+    clearInterval(this.timer)
   }
 
   timer = null
 
   componentDidMount() {
-    timer = setInterval(() => {
+    this.timer = setInterval(() => {
       Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
     }, 10000)
   }
+
 
   setActiveFile = index => {
     this.setState({
