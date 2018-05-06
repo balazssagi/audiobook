@@ -22,7 +22,7 @@ class Home extends Component {
       this.audioElement.currentTime = book.currentTime
       this.audioElement.addEventListener('ended', () => {
         this.setState(state => ({
-          activeFileIndex: state.activeFileIndex + 1
+          activeFileIndex: Math.min(state.activeFileIndex + 1, state.files.length - 1)
         }))
       })
       this.timer = setInterval(() => {
@@ -66,6 +66,9 @@ class Home extends Component {
               ))}
             </ul>
             <audio
+              style={{
+                width: '100%'
+              }}
               ref={audioElement => {
                 this.audioElement = audioElement
               }}
