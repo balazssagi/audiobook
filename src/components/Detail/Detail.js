@@ -16,7 +16,7 @@ class Home extends Component {
     const files = await Api.getFiles(book)
     this.setState({
       book,
-      files,
+      files: files.sort((a, b) => a.title.localeCompare(b.title)),
       activeFileIndex: book.currentFileId,
     }, () => {
       this.audioElement.currentTime = book.currentTime
@@ -59,6 +59,9 @@ class Home extends Component {
                 <li
                   onClick={() => {
                     this.setActiveFile(i)
+                  }}
+                  style={{
+                    color: i === activeFileIndex ? 'blue' : 'black'
                   }}
                 >
                   {file.title}
