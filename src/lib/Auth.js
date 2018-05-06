@@ -1,7 +1,7 @@
 
 const CLIENT_ID =
-  '142334acb47277ab513043ac4bd3137a19924c18463f60da512d7239deb27f7e'
-const REDIRECT_URL = 'https://musing-edison-10a77b.netlify.com/'
+  '01b8666f08ab1a5cbcbefebd3006e555ce7f9f71d8b20b1cd956ceea8434818d'
+const REDIRECT_URL = 'https://localhost:3000/'
 const STORAGE_KEY = 'token'
 
 export default class Auth {

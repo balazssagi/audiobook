@@ -11,7 +11,6 @@ class Home extends Component {
   async componentWillMount() {
     Auth.saveAccessToken()
     if (Auth.isAuthenticated) {
-      Api.initApi()
       const books = await Api.getBooks()
       this.setState({
         books,

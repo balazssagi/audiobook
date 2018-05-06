@@ -39,7 +39,7 @@ export default class Api {
     return client
       .getSpace('lxkoveundpb9')
       .then(space => space.getEnvironment('master'))
-      .then(environment => environment.getEntries())
+      .then(environment => environment.getEntries({content_type: 'book'}))
       .then(response => response.items.map(normalizeBook))
       .catch(console.error)
   }

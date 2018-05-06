@@ -19,23 +19,23 @@ class Home extends Component {
       activeFileIndex: book.currentFileId,
     }, () => {
       this.audioElement.currentTime = book.currentTime
+      this.audioElement.addEventListener('ended', () => {
+        this.setState(state => ({
+          activeFileIndex: state.activeFileIndex + 1
+        }))
+      })
+      this.timer = setInterval(() => {
+        Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
+      }, 10000)
     })
   }
 
   componentWillUnmount() {
-    console.log(this.audioElement.currentTime)
     Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
     clearInterval(this.timer)
   }
 
   timer = null
-
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
-    }, 10000)
-  }
-
 
   setActiveFile = index => {
     this.setState({
@@ -48,7 +48,6 @@ class Home extends Component {
 
     return (
       <div>
-        {JSON.stringify(this.state)}
         {book && (
           <div>
             <h1>
