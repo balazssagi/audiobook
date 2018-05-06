@@ -30,9 +30,11 @@ function normalizeFile(file) {
 export default class Api {
 
   static initApi() {
-    client = createClient({
-      accessToken: Auth.token,
-    })
+    if(!client) {
+      client = createClient({
+        accessToken: Auth.token,
+      })
+    }
   }
 
   static getBooks() {

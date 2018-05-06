@@ -11,6 +11,7 @@ class Home extends Component {
   audioElement = null
 
   async componentDidMount() {
+    Api.initApi()
     const book = await Api.getBook(this.props.match.params.id)
     const files = await Api.getFiles(book)
     this.setState({
