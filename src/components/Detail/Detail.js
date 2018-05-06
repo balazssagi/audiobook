@@ -27,6 +27,14 @@ class Home extends Component {
     Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
   }
 
+  timer = null
+
+  componentDidMount() {
+    timer = setInterval(() => {
+      Api.updateBook(this.state.book, this.state.activeFileIndex, this.audioElement.currentTime)
+    }, 10000)
+  }
+
   setActiveFile = index => {
     this.setState({
       activeFileIndex: index,
